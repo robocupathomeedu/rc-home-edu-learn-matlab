@@ -63,4 +63,8 @@ Inverse kinematics and robot arm control (using ROS interface to Dynamixel motor
 
 ### Integration
 Putting it all together into one typical RoboCup@Home task!
-* `TODO`
+* `integFinalTask.m` - Final script, which runs all the other scripts in this folder sequentially
+* `integSpeech.m` - Final script for speech tasks
+* `integNavigation.m` - Final script for navigation tasks
+* `integVision.m` - Final script for vision tasks
+* `integManipulation.m` - Final script for manipulation tasks

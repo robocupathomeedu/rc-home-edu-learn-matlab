@@ -1,14 +1,14 @@
-% Example navigation task
+% Final task: Navigation
 
 % Copyright 2018 The MathWorks, Inc.
 
 %% Setup
-connectToRobot;
 % Create publishers and subscribers for navigation
 odomSub = rossubscriber('/odom');
 [vPub,vMsg] = rospublisher('/mobile_base/commands/velocity');
 % Reset the odometry to zero
 resetOdometry;
+pause(1);
    
 %% Path planning
 % First, load the presaved map
@@ -19,13 +19,12 @@ prm = robotics.PRM(map);
 prm.NumNodes = 300;
 prm.ConnectionDistance = 2.5;
 
-% Define a start and goal point
+% Retrieve the start point
 pose = getRobotPose(receive(odomSub));
 startPoint = pose(1:2);
-goalPoint = [12 5]; % Specify goal as an array
-%goalPoint = getPosition(impoint); % Get goal interactively
 
-% Find a path
+% Find a path from start to goal
+% NOTE: The goal point is defined from the previous task
 myPath = findpath(prm,startPoint,goalPoint);
 show(prm)
 
@@ -54,4 +53,8 @@ while norm(goalPoint-pose(1:2)) > 0.1
     hPose = plot(pose(1),pose(2),'gx','MarkerSize',15,'LineWidth',2);
     drawnow;  
 end
-disp('Reached Goal!');
+
+%% Cleanup
+disp('Navigation task complete!');
+clear odomSub
+close all

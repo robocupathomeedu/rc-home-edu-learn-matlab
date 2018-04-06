@@ -6,13 +6,15 @@ function objDepth = getObjectDepth(depthImg,objLocation)
 
 % Copyright 2018 The MathWorks, Inc.
 
+depthData = []; 
+
 % Get depth at that location
 % If the location is a 2-element vector, get depth at that pixel
 if numel(objLocation) == 2
     depthData = depthImg(objLocation(1),objLocation(2));
 % If it's a 4-element vector, get mean depth of that bounding box
 % Ignores zero-depth values
-else
+elseif numel(objLocation) == 4
     depthCropped = imcrop(depthImg,objLocation);
     depthData = mean(mean(depthCropped(depthCropped>0)));
 end

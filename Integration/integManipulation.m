@@ -1,10 +1,9 @@
-% Example Manipulation task using ROS interface to Dynamixel motors
+% Final task: Manipulation
 
 % Copyright 2018 The MathWorks, Inc.
 
 %% Setup
-connectToRobot;
-% Create publishers and subscribers
+% Create publishers and subscribers for manipulation
 jointSub = rossubscriber('/joint_states');
 jointNames = {'arm_shoulder_pan_joint', ...
               'arm_shoulder_lift_joint', ...
@@ -44,7 +43,7 @@ end
 tform = getTransform(robot,jPos,'gripper_link');
 eePos = tform2trvec(tform)
 
-%% Compute a trajectory
+%% Compute a trajectory to the object
 close all
 startPoint = eePos;
 waypoints = [startPoint; ...
@@ -89,4 +88,6 @@ for idx = 1:numPts
 
 end
 
-disp('Done.')
+%% Cleanup
+disp('Manipulation task complete!');
+clear jointSub

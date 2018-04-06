@@ -26,7 +26,7 @@ elseif contains(speechStr,'living')
     goalPoint = [-5 4];
     goalName = 'living room';
 elseif contains(speechStr,'bedroom')
-    goalPoint = [2 8];
+    goalPoint = [0.5 0.5];
     goalName = 'bedroom';
 else
     goalPoint = [];
