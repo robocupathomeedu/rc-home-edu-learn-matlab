@@ -1,0 +1,56 @@
+% Example navigation task
+
+% Copyright 2018 The MathWorks, Inc.
+
+%% Setup
+connectToRobot;
+% Create publishers and subscribers for navigation
+odomSub = rossubscriber('/odom');
+[vPub,vMsg] = rospublisher('/mobile_base/commands/velocity');
+% Reset the odometry to zero
+resetOdometry;
+   
+%% Path planning
+% First, load the presaved map
+load myMapsV3
+
+% Then, create a probabilistic roadmap (PRM)
+prm = robotics.PRM(map);
+prm.NumNodes = 300;
+prm.ConnectionDistance = 2.5;
+
+% Define a start and goal point
+pose = getRobotPose(receive(odomSub));
+startPoint = pose(1:2);
+goalPoint = [12 5]; % Specify goal as an array
+%goalPos = getPosition(impoint); % Get goal interactively
+
+% Find a path
+myPath = findpath(prm,startPoint,goalPoint);
+show(prm)
+
+%% Perform navigation using Pure Pursuit
+% First, create the controller and set its parameters
+pp = robotics.PurePursuit;
+pp.DesiredLinearVelocity = 0.2;
+pp.LookaheadDistance = 0.5;
+pp.Waypoints = myPath;
+
+% Navigate until the goal is reached within threshold
+show(prm); 
+hold on
+while norm(goalPoint-pose(1:2)) > 0.1 
+    % Get latest pose
+    pose = getRobotPose(odomSub.LatestMessage);     
+    % Run the controller
+    [v,w] = pp(pose); 
+    % Assign speeds to ROS message and send
+    vMsg.Linear.X = v;
+    vMsg.Angular.Z = w;
+    send(vPub,vMsg);   
+    % Plot the robot position
+    delete(hPose);
+    hPose = plot(pose(1),pose(2),'gx','MarkerSize',15,'LineWidth',2);
+    drawnow;  
+end
+disp('Reached Goal!');

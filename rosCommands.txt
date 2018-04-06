@@ -1,0 +1,42 @@
+ROS COMMAND CHEAT SHEET
+Copyright 2018 The MathWorks, Inc.
+
+
+##### STARTING TURTLEBOT
+roslaunch turtlebot_bringup minimal.launch
+roslaunch turtlebot_bringup 3dsensor.launch
+
+
+##### RUNNING SPEECH SYNTHESIS
+rosrun sound_play soundplay_node.py
+rosrun sound_play say.py "Hello World"
+
+
+##### RUNNING SLAM (GMAPPING DEMO)
+http://wiki.ros.org/turtlebot_navigation/Tutorials/Build%20a%20map%20with%20SLAM
+
+roslaunch turtlebot_navigation gmapping_demo.launch
+roslaunch turtlebot_rviz_launchers view_navigation.launch
+
+
+##### TELEOPERATION
+http://wiki.ros.org/turtlebot_teleop
+
+roslaunch turtlebot_teleop keyboard_teleop.launch
+roslaunch turtlebot_teleop ps3_teleop.launch
+roslaunch turtlebot_teleop xbox360_teleop.launch (left bumper + joystick)
+
+
+##### WORKING WITH XBOX CONTROLLER
+http://wiki.ros.org/joy/Tutorials/ConfiguringALinuxJoystick
+
+INSTALL: 
+sudo apt-get install ros-indigo-joy (or other distribution)
+
+TEST DEVICE:
+ls /dev/input/
+sudo jstest /dev/input/jsX (e.g. js0, js1, etc.)
+
+RUN NODE:
+rosparam set joy_node/dev "/dev/input/jsX"
+rosrun joy joy_node
