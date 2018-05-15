@@ -7,6 +7,11 @@ roslaunch turtlebot_bringup minimal.launch
 roslaunch turtlebot_bringup 3dsensor.launch
 
 
+##### STARTING MARRTINO
+cd marrtino_apps/robot
+roslaunch robot.launch
+
+
 ##### RUNNING SPEECH SYNTHESIS
 rosrun sound_play soundplay_node.py
 rosrun sound_play say.py "Hello World"

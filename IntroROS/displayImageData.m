@@ -4,9 +4,9 @@
 
 %% Setup
 connectToRobot;
-imgSub = rossubscriber('/camera/rgb/image_raw');
-depthSub = rossubscriber('/camera/depth_registered/image_raw');
-[vPub,vMsg] = rospublisher('/mobile_base/commands/velocity');
+imgSub = rossubscriber(RGB_IMAGE);
+depthSub = rossubscriber(DEPTH_IMAGE);
+[vPub,vMsg] = rospublisher(ROBOT_CMD_VEL);
 
 %% Visualize the image data
 close all

@@ -7,18 +7,27 @@ rosshutdown
 %% Connect to ROS master
 % Replace with your IP address information
 % Set to '' if MATLAB is on the same machine as ROS master
-robotIP = '172.31.28.38';
-
-% OPTIONAL: Set environment variable to IP address of machine with ROS master
-%setenv('ROS_IP','172.31.28.239')
-
-% OPTIONAL: Set environment variable to URI of ROS master
-%setenv('ROS_MASTER_URI','http://172.31.28.38:11311');
+robotIP = '192.168.0.30';
+matlabIP = '192.168.0.205';
 
 % Connect to ROS master
-rosinit(robotIP)
+rosinit(robotIP,'NodeHost',matlabIP)
 
 %% Set up ROS device for code generation and deployed node access
-r = rosdevice(robotIP,'turtlebot','turtlebot');
-r.ROSFolder = '/opt/ros/kinetic';
-r.CatkinWorkspace = '~/mw_catkin_ws';
+%r = rosdevice(robotIP,'turtlebot','turtlebot');
+%r.ROSFolder = '/opt/ros/kinetic';
+%r.CatkinWorkspace = '~/ros/catkin_ws';
+
+%% ROS Topics and frames
+
+% ROBOT_CMD_VEL = '/mobile_base/commands/velocity'; % Turtlebot
+ROBOT_CMD_VEL = '/cmd_vel'; % MARRtino
+ROBOT_ODOM = '/odom';
+
+LASER_SCAN = '/scan';
+
+RGB_IMAGE = '/camera/rgb/image_raw'; % Turtlebot
+DEPTH_IMAGE = '/camera/depth_registered/image_raw'; % Turtlebot
+RGB_IMAGE = '/rgb/image_raw'; % MARRtino
+DEPTH_IMAGE = '/depth/image_raw'; % MARRtino
+
