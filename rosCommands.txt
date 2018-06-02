@@ -7,11 +7,6 @@ roslaunch turtlebot_bringup minimal.launch
 roslaunch turtlebot_bringup 3dsensor.launch
 
 
-##### STARTING MARRTINO
-cd marrtino_apps/robot
-roslaunch robot.launch
-
-
 ##### RUNNING SPEECH SYNTHESIS
 rosrun sound_play soundplay_node.py
 rosrun sound_play say.py "Hello World"
@@ -45,3 +40,16 @@ sudo jstest /dev/input/jsX (e.g. js0, js1, etc.)
 RUN NODE:
 rosparam set joy_node/dev "/dev/input/jsX"
 rosrun joy joy_node
+
+
+# MARRTINO OPTIONS
+
+##### STARTING MARRTINO
+cd marrtino_apps/robot
+roslaunch robot.launch
+
+
+##### STARTING STAGE SIMULATION (MARRTINO APPS)
+cd marrtino_apps/stage
+roslaunch simrobot.launch
+
