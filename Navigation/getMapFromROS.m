@@ -6,7 +6,7 @@
 
 %% Setup
 connectToRobot;
-mapSub = rossubscriber('/map');
+mapSub = rossubscriber(MAP_TOPIC);
 
 %% Receive a map message and convert it to an occupancy grid
 mapMsg = receive(mapSub);

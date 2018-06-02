@@ -5,8 +5,8 @@
 %% Setup
 connectToRobot;
 % Create publishers and subscribers for vision
-imgSub = rossubscriber('/camera/rgb/image_raw');
-[vPub,vMsg] = rospublisher('/mobile_base/commands/velocity');
+imgSub = rossubscriber(RGB_IMAGE);
+[vPub,vMsg] = rospublisher(ROBOT_CMD_VEL);
 
 %% Get first images
 close all

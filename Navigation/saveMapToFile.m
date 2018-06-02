@@ -18,11 +18,11 @@ switch answer
         % Else, try get a map from the /map topic. 
         % Throw an error message if no map can be read.
         else
-            mapSub = rossubscriber('/map');
+            mapSub = rossubscriber(MAP_TOPIC);
             try
                 mapMsg = receive(mapSub);
             catch
-                errordlg('No map found on the /map topic');
+                errordlg('No map found on the map topic');
             end
             map = readOccupancyGrid(mapMsg);   
         end

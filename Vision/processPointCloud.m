@@ -4,7 +4,7 @@
 
 %% Setup
 connectToRobot;
-pcSub = rossubscriber('/camera/depth_registered/points');
+pcSub = rossubscriber(DEPTH_POINTS);
 close all
 
 %% Receive and visualize the point cloud data
