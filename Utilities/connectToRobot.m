@@ -20,7 +20,23 @@ rosinit(robotIP,'NodeHost',matlabIP)
 
 %% ROS Topics and frames
 
-robottype = 'MARRtino';
+% default
+ROBOT_CMD_VEL = '/cmd_vel'; 
+ROBOT_ODOM = '/odom';
+ROBOT_RESET_ODOM = '/reset_odometry';
+LASER_SCAN = '/scan';
+RGB_IMAGE = '/camera/rgb/image_raw'; 
+DEPTH_IMAGE = '/camera/depth/image_raw'; 
+DEPTH_POINTS = '/camera/depth_registered/points';
+MAP_TOPIC = '/map';
+JOINT_STATES = '/joint_states';
+
+%
+% !!! Set your platform here !!!
+%
+robottype = 'Turtlebot';
+
+% Platform specific names
 
 % Turtlebot
 if (strcmp(robottype,'Turtlebot'))
@@ -31,32 +47,14 @@ if (strcmp(robottype,'Turtlebot'))
     RGB_IMAGE = '/camera/rgb/image_raw'; 
     DEPTH_IMAGE = '/camera/depth_registered/image_raw'; 
     DEPTH_POINTS = '/camera/depth_registered/points';
-    MAP_TOPIC = '/map';
-    JOINT_STATES = '/joint_states';
 
 % MARRtino
 elseif (strcmp(robottype,'MARRtino'))
     ROBOT_CMD_VEL = '/cmd_vel'; 
     ROBOT_ODOM = '/odom';
-    ROBOT_RESET_ODOM = '/mobile_base/commands/reset_odometry'; %% TODO !!!
     LASER_SCAN = '/scan';
     RGB_IMAGE = '/rgb/image_raw'; 
     DEPTH_IMAGE = '/depth/image_raw'; 
-    DEPTH_POINTS = '/camera/depth_registered/points'; %% TODO !!!
-    MAP_TOPIC = '/map';
-    JOINT_STATES = '/joint_states';
-
-% default
-else
-    ROBOT_CMD_VEL = '/cmd_vel'; 
-    ROBOT_ODOM = '/odom';
-    ROBOT_RESET_ODOM = '/mobile_base/commands/reset_odometry';
-    LASER_SCAN = '/scan';
-    RGB_IMAGE = '/camera/rgb/image_raw'; 
-    DEPTH_IMAGE = '/camera/depth/image_raw'; 
-    DEPTH_POINTS = '/camera/depth_registered/points';
-    MAP_TOPIC = '/map';
-    JOINT_STATES = '/joint_states';
 
 end
 
