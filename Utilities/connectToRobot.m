@@ -20,14 +20,32 @@ rosinit(robotIP,'NodeHost',matlabIP)
 
 %% ROS Topics and frames
 
-% ROBOT_CMD_VEL = '/mobile_base/commands/velocity'; % Turtlebot
-ROBOT_CMD_VEL = '/cmd_vel'; % MARRtino
-ROBOT_ODOM = '/odom';
+robottype = 'Turtlebot';
 
-LASER_SCAN = '/scan';
+% Turtlebot
+if (strcmp(robottype,'Turtlebot')
+    ROBOT_CMD_VEL = '/mobile_base/commands/velocity'; 
+    ROBOT_ODOM = '/odom';
+    LASER_SCAN = '/scan';
+    RGB_IMAGE = '/camera/rgb/image_raw'; 
+    DEPTH_IMAGE = '/camera/depth_registered/image_raw'; 
 
-RGB_IMAGE = '/camera/rgb/image_raw'; % Turtlebot
-DEPTH_IMAGE = '/camera/depth_registered/image_raw'; % Turtlebot
-RGB_IMAGE = '/rgb/image_raw'; % MARRtino
-DEPTH_IMAGE = '/depth/image_raw'; % MARRtino
+
+% MARRtino
+elseif (strcmp(robottype,'MARRtino')
+    ROBOT_CMD_VEL = '/cmd_vel'; 
+    ROBOT_ODOM = '/odom';
+    LASER_SCAN = '/scan';
+    RGB_IMAGE = '/rgb/image_raw'; 
+    DEPTH_IMAGE = '/depth/image_raw'; 
+
+% default
+else
+    ROBOT_CMD_VEL = '/cmd_vel'; 
+    ROBOT_ODOM = '/odom';
+    LASER_SCAN = '/scan';
+    RGB_IMAGE = '/camera/rgb/image_raw'; 
+    DEPTH_IMAGE = '/camera/depth/image_raw'; 
+
+end
 
