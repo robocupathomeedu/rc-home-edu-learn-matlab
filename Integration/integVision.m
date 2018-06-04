@@ -4,8 +4,8 @@
 
 %% Setup
 % Create subscribers for vision
-imgSub = rossubscriber('/camera/rgb/image_raw');
-depthSub = rossubscriber('/camera/depth_registered/image_raw');
+imgSub = rossubscriber(RGB_IMAGE);
+depthSub = rossubscriber(DEPTH_IMAGE);
 % Ensure images have been received before algorithm begins
 imgMsg = receive(imgSub);
 depthMsg = receive(depthSub);

@@ -5,8 +5,8 @@
 %% Setup
 connectToRobot;
 % Create publishers and subscribers for vision
-imgSub = rossubscriber('/camera/rgb/image_raw');
-depthSub = rossubscriber('/camera/depth_registered/image_raw');
+imgSub = rossubscriber(RGB_IMAGE);
+depthSub = rossubscriber(DEPTH_IMAGE);
 
 %% Get images
 imgMsg = receive(imgSub);

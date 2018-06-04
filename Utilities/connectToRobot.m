@@ -7,18 +7,54 @@ rosshutdown
 %% Connect to ROS master
 % Replace with your IP address information
 % Set to '' if MATLAB is on the same machine as ROS master
-robotIP = '172.31.28.38';
-
-% OPTIONAL: Set environment variable to IP address of machine with ROS master
-%setenv('ROS_IP','172.31.28.239')
-
-% OPTIONAL: Set environment variable to URI of ROS master
-%setenv('ROS_MASTER_URI','http://172.31.28.38:11311');
+robotIP = '';
+matlabIP = '';
 
 % Connect to ROS master
-rosinit(robotIP)
+rosinit(robotIP,'NodeHost',matlabIP)
 
 %% Set up ROS device for code generation and deployed node access
-r = rosdevice(robotIP,'turtlebot','turtlebot');
-r.ROSFolder = '/opt/ros/kinetic';
-r.CatkinWorkspace = '~/mw_catkin_ws';
+%r = rosdevice(robotIP,'turtlebot','turtlebot');
+%r.ROSFolder = '/opt/ros/kinetic';
+%r.CatkinWorkspace = '~/ros/catkin_ws';
+
+%% ROS Topics and frames
+
+% default
+ROBOT_CMD_VEL = '/cmd_vel'; 
+ROBOT_ODOM = '/odom';
+ROBOT_RESET_ODOM = '/reset_odometry';
+LASER_SCAN = '/scan';
+RGB_IMAGE = '/camera/rgb/image_raw'; 
+DEPTH_IMAGE = '/camera/depth/image_raw'; 
+DEPTH_POINTS = '/camera/depth_registered/points';
+MAP_TOPIC = '/map';
+JOINT_STATES = '/joint_states';
+
+%
+% !!! Set your platform here !!!
+%
+robottype = 'Turtlebot';
+
+% Platform specific names
+
+% Turtlebot
+if (strcmp(robottype,'Turtlebot'))
+    ROBOT_CMD_VEL = '/mobile_base/commands/velocity'; 
+    ROBOT_ODOM = '/odom';
+    ROBOT_RESET_ODOM = '/mobile_base/commands/reset_odometry';
+    LASER_SCAN = '/scan';
+    RGB_IMAGE = '/camera/rgb/image_raw'; 
+    DEPTH_IMAGE = '/camera/depth_registered/image_raw'; 
+    DEPTH_POINTS = '/camera/depth_registered/points';
+
+% MARRtino
+elseif (strcmp(robottype,'MARRtino'))
+    ROBOT_CMD_VEL = '/cmd_vel'; 
+    ROBOT_ODOM = '/odom';
+    LASER_SCAN = '/scan';
+    RGB_IMAGE = '/rgb/image_raw'; 
+    DEPTH_IMAGE = '/depth/image_raw'; 
+
+end
+

@@ -4,8 +4,8 @@
 
 %% Setup
 % Create publishers and subscribers for navigation
-odomSub = rossubscriber('/odom');
-[vPub,vMsg] = rospublisher('/mobile_base/commands/velocity');
+odomSub = rossubscriber(ROBOT_ODOM);
+[vPub,vMsg] = rospublisher(ROBOT_CMD_VEL);
 % Reset the odometry to zero
 resetOdometry;
 pause(1);

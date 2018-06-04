@@ -4,8 +4,8 @@
 
 %% Setup
 connectToRobot;
-[vPub,vMsg] = rospublisher('/mobile_base/commands/velocity');
-scanSub = rossubscriber('/scan');
+[vPub,vMsg] = rospublisher(ROBOT_CMD_VEL);
+scanSub = rossubscriber(LASER_SCAN);
 receive(scanSub); % Do this in case no scan data has been received yet
 
 %% Move the robot around and display scan results

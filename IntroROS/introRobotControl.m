@@ -11,13 +11,13 @@ rostopic info /odom
 % rostopic echo /odom % Ctrl+C to stop this
 
 %% Create velocity publisher and send velocity commands
-[vPub,vMsg] = rospublisher('/mobile_base/commands/velocity');
+[vPub,vMsg] = rospublisher(ROBOT_CMD_VEL);
 vMsg.Linear.X = 0.1;
 vMsg.Angular.Z = 0.5;
 send(vPub,vMsg);
 
 %% Create odometry subscriber and view the results
-odomSub = rossubscriber('/odom');
+odomSub = rossubscriber(ROBOT_ODOM);
 odomMsg = receive(odomSub);
 
 numSteps = 20; % Number of loop iterations

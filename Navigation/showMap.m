@@ -7,7 +7,7 @@ function success = showMap(varargin)
     %% Create map subscriber
     persistent mapSub
     if isempty(mapSub)
-        mapSub = rossubscriber('/map');
+        mapSub = rossubscriber(MAP_TOPIC);
     end
 
     %% Receive, show, and save the latest map from the /map topic

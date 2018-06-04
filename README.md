@@ -9,8 +9,8 @@ Take a look at `rosCommands.txt` for some of the ROS nodes that need to be
 running to work with this example.
 
 Finally, go to the `Utilities` folder and open the `connectToRobot.m` script. 
-Modify this with your robot's IP address, username/password, and ROS/Catkin 
-workspace folders as needed.
+Modify this with your robot's IP address, username/password, robot type, 
+and ROS/Catkin workspace folders as needed.
 
 ## Folder and File Information
 
