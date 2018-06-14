@@ -7,7 +7,7 @@ rosshutdown
 %% Connect to ROS master
 % Replace with your IP address information
 % Set to '' if MATLAB is on the same machine as ROS master
-robotIP = '172.31.28.38';
+robotIP = '';
 matlabIP = '';
 
 % Connect to ROS master
