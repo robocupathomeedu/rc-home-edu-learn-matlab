@@ -50,8 +50,10 @@ Computer vision (RGB image, Depth image, point cloud)
 * `trackObjectDepth.m` - Function that determines robot speed based on object location and depth
 * `visionTaskSize.m` - Main script that tracks a detected object using its location and pixel size
 * `trackObjectSize.m` - Function that determines robot speed based on object location and size
-* `processPointCloud.m` - Bonus example showing point cloud processing
 
+#### Additional Vision Files
+* `processPointCloud.m` - Bonus example showing point cloud processing
+* `apriltags\
 ### Manipulation
 Inverse kinematics and robot arm control (using ROS interface to Dynamixel motors)
 * `manipDescriptions.mat` - MAT-file containing Rigid Body Tree definitions of robot arms

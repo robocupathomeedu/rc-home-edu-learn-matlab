@@ -39,7 +39,7 @@ waypoints = [startPoint; ...
 % Create trajectory
 numSteps = 5; 
 numPts = numSteps*(size(waypoints,1)-1) + 1;
-traj = createTrajectory(waypoints,numPts,'linear');
+traj = createTrajectory(waypoints,numPts,'spline');
 
 % Loop through trajectory and solve IK
 for idx = 1:numPts
