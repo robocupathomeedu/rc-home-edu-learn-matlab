@@ -1,4 +1,4 @@
-### Setup Setup steps:
+### AprilTag Example Setup Steps
  
 1.  Check out the apriltags_ros package from 
     https://bitbucket.org/iocchi/apriltags_ros

@@ -11,17 +11,16 @@ https://www.openu.ac.il/home/hassner/projects/cnn_agegender/
     https://www.openu.ac.il/home/hassner/Adience/data.html#agegender
 
 2.  Extract the archive and make sure the following files are on the MATLAB path
-    a. Label text files, e.g. `fold_0_data.txt` 
-    b. Aligned face folders, e.g., `aligned`7153718@N04`
+    * Label text files, e.g. `fold_0_data.txt` 
+    * Aligned face folders, e.g., `aligned\7153718@N04`
 
 3.  Run the `createGenderDatastore.m` script to parse the data into a MATLAB 
     ImageDatastore object that is usable for neural networks
     
 4.  Download the Caffe models from one of the following links and make sure 
     the `deploy_gender.prototxt` file is on the MATLAB search path.
-    https://github.com/GilLevi/AgeGenderDeepLearning
-        or
-    https://gist.github.com/GilLevi/c9e99062283c719c03de
+    * https://github.com/GilLevi/AgeGenderDeepLearning
+    * https://gist.github.com/GilLevi/c9e99062283c719c03de
 
 5.  Install the Neural Network Toolbox Importer for Caffe Models 
     from the Add-On Manager (Home > Add-Ons > Get Add-Ons)

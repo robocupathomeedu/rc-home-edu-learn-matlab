@@ -16,6 +16,7 @@ and ROS/Catkin workspace folders as needed.
 
 ### IntroROS
 Introduction to communicating with a ROS enabled robot.
+* `simpleTalker.m` - Instructional example showing how to communicate between MATLAB and ROS
 * `introRobotControl.m` - How to get robot pose and send velocity commands
 * `displayScanData.m` - How to get and display data from the "lidar" sensor
 * `displayImageData.m` - How to get and display color and depth images from the RGB-D sensor
@@ -51,9 +52,14 @@ Computer vision (RGB image, Depth image, point cloud)
 * `visionTaskSize.m` - Main script that tracks a detected object using its location and pixel size
 * `trackObjectSize.m` - Function that determines robot speed based on object location and size
 
-#### Additional Vision Files
-* `processPointCloud.m` - Bonus example showing point cloud processing
-* `apriltags\
+#### Bonus/Advanced Vision Files
+* `processPointCloud.m` - Example showing point cloud processing
+* `apriltags\visionAprilTags.m` - Script that subscribes to AprilTag detection ROS topic and displays information
+* `apriltags\README_APRILTAGS.md` - More information about the example above, including setup steps
+* `person_detection\visionPersonDetection.m` - Script to test pretrained face and person detectors from Computer Vision System Toolbox
+* `person_detection\visionGenderDetection.m` - Script that combines pretrained face detector with deep learning based gender classifier
+* `person_detection\README_GENDER.md` - More information about the example above, including setup steps
+
 ### Manipulation
 Inverse kinematics and robot arm control (using ROS interface to Dynamixel motors)
 * `manipDescriptions.mat` - MAT-file containing Rigid Body Tree definitions of robot arms
