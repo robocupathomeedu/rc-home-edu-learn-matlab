@@ -1,7 +1,8 @@
 %% AprilTag Example
-%  See the README file in this folder for setup information
 %
-%  Copyright 2018 The MathWorks, Inc.
+% For setup steps, see README_APRILTAGS.md
+%
+% Copyright 2018 The MathWorks, Inc.
 
 %% Setup
 connectToRobot;

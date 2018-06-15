@@ -21,7 +21,8 @@ end
 detector = vision.CascadeObjectDetector();
 
 % Load pretrained neural network for gender detection
-load genderNet_6_13_2018
+% load genderNet_6_13_2018
+load genderNet_6_14_2018
 classNames = genderNet.Layers(end).ClassNames;
 
 % Create video player for visualization
