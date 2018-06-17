@@ -14,8 +14,17 @@ function map = readYamlMap(filename)
 
         % Read image file
         if contains(tline,'image:')
-            [sIdx,eIdx] = regexp(tline,'\w*.pgm');
-            occMat = 1 - double(imread(tline(sIdx:eIdx)))/255;
+            % First, try read the full path
+            try 
+                [sIdx,eIdx] = regexp(tline,'image: ');
+                img = imread(tline(eIdx:end));
+            % If that doesn't work, read just the image name
+            catch
+                [sIdx,eIdx] = regexp(tline,'\w*.pgm');
+                img = imread(tline(sIdx:eIdx));               
+            end
+            % Rescale the image to the right format
+            occMat = 1 - double(img)/255;
         end
         % Read resolution
         if contains(tline,'resolution:')
