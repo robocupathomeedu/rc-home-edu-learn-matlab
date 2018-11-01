@@ -56,5 +56,11 @@ elseif (strcmp(robottype,'MARRtino'))
     RGB_IMAGE = '/rgb/image_raw'; 
     DEPTH_IMAGE = '/depth/image_raw'; 
 
+% Stage simulator
+elseif (strcmp(robottype,'Stage'))
+    ROBOT_CMD_VEL = '/cmd_vel'; 
+    ROBOT_ODOM = '/odom';
+    LASER_SCAN = '/scan';
+
 end
 
