@@ -1,6 +1,6 @@
 # RoboCup@Home Education Workshop
 ### MATLAB and Simulink Files
-### Copyright 2018 The MathWorks, Inc.
+### Copyright 2018-2019 The MathWorks, Inc.
 
 ## Getting Started
 First, run the `startWorkshop` script to set up your environment.
@@ -36,6 +36,7 @@ Mapping, path planning, and path following
 * `showMap.m` - Utility function that displays an occupancy grid received from mapping topic
 * `drive_around.slx` - Simulink model that drives robot based on joystick input and displays/saves received map
 * `driveParameters.m` - Data file for the model above
+* `testMoveBaseAction.m` - Script to test the ROS `move_base` action server to reach a goal location
 * `testPathPlanning.m` - Script to test path planning given a map, start location, and goal location
 * `navigationTask.m` - Script to perform path planning and following on the robot
 
