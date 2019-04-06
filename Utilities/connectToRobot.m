@@ -23,6 +23,17 @@ rosinit(robotIP,'NodeHost',matlabIP)
 %r.CatkinWorkspace = '~/ros/catkin_ws';
 
 %% ROS Topics and frames
+ROBOT_CMD_VEL = '/cmd_vel'; 
+ROBOT_ODOM = '/odom';
+ROBOT_RESET_ODOM = '/reset_odometry';
+ROBOT_POSE = '/amcl_pose';
+LASER_SCAN = '/scan';
+RGB_IMAGE = '/camera/rgb/image_raw'; 
+DEPTH_IMAGE = '/camera/depth/image_raw'; 
+DEPTH_POINTS = '/camera/depth_registered/points';
+MAP_TOPIC = '/map';
+JOINT_STATES = '/joint_states';
+
 %
 % !!! Set your platform here !!!
 %
@@ -43,22 +54,10 @@ switch lower(robottype) %  Use lowercase so it's case insensitive
 
 % MARRtino
     case 'marrtino'
-        ROBOT_CMD_VEL = '/cmd_vel'; 
-        ROBOT_ODOM = '/odom';
-        LASER_SCAN = '/scan';
         RGB_IMAGE = '/rgb/image_raw'; 
         DEPTH_IMAGE = '/depth/image_raw'; 
-    
-    % Default       
-    otherwise
-        ROBOT_CMD_VEL = '/cmd_vel'; 
-        ROBOT_ODOM = '/odom';
-        ROBOT_RESET_ODOM = '/reset_odometry';
-        LASER_SCAN = '/scan';
-        RGB_IMAGE = '/camera/rgb/image_raw'; 
-        DEPTH_IMAGE = '/camera/depth/image_raw'; 
-        DEPTH_POINTS = '/camera/depth_registered/points';
-        MAP_TOPIC = '/map';
-        JOINT_STATES = '/joint_states';
-        
+
+% Stage simulator
+    case 'stage'
+
 end
