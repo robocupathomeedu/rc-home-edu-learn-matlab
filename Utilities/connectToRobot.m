@@ -35,7 +35,7 @@ JOINT_STATES = '/joint_states';
 %
 % !!! Set your platform here !!!
 %
-robottype = 'Stage';
+robottype = 'Turtlebot';
 
 % Platform specific names
 
@@ -51,17 +51,11 @@ if (strcmp(robottype,'Turtlebot'))
 
 % MARRtino
 elseif (strcmp(robottype,'MARRtino'))
-    ROBOT_CMD_VEL = '/cmd_vel'; 
-    ROBOT_ODOM = '/odom';
-    LASER_SCAN = '/scan';
     RGB_IMAGE = '/rgb/image_raw'; 
     DEPTH_IMAGE = '/depth/image_raw'; 
 
 % Stage simulator
 elseif (strcmp(robottype,'Stage'))
-    ROBOT_CMD_VEL = '/cmd_vel'; 
-    ROBOT_ODOM = '/odom';
-    LASER_SCAN = '/scan';
 
 end
 
