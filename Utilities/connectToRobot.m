@@ -24,7 +24,7 @@ rosinit(robotIP,'NodeHost',matlabIP)
 ROBOT_CMD_VEL = '/cmd_vel'; 
 ROBOT_ODOM = '/odom';
 ROBOT_RESET_ODOM = '/reset_odometry';
-ROBOT_POSE = '/amcl_pose'
+ROBOT_POSE = '/amcl_pose';
 LASER_SCAN = '/scan';
 RGB_IMAGE = '/camera/rgb/image_raw'; 
 DEPTH_IMAGE = '/camera/depth/image_raw'; 
