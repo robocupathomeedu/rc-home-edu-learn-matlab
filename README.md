@@ -1,6 +1,6 @@
 # RoboCup@Home Education Workshop
 ### MATLAB and Simulink Files
-### Copyright 2018 The MathWorks, Inc.
+### Copyright 2018-2019 The MathWorks, Inc.
 
 ## Getting Started
 First, run the `startWorkshop` script to set up your environment.
@@ -16,6 +16,7 @@ and ROS/Catkin workspace folders as needed.
 
 ### IntroROS
 Introduction to communicating with a ROS enabled robot.
+* `simpleTalker.m` - Instructional example showing how to communicate between MATLAB and ROS
 * `introRobotControl.m` - How to get robot pose and send velocity commands
 * `displayScanData.m` - How to get and display data from the "lidar" sensor
 * `displayImageData.m` - How to get and display color and depth images from the RGB-D sensor
@@ -35,6 +36,7 @@ Mapping, path planning, and path following
 * `showMap.m` - Utility function that displays an occupancy grid received from mapping topic
 * `drive_around.slx` - Simulink model that drives robot based on joystick input and displays/saves received map
 * `driveParameters.m` - Data file for the model above
+* `testMoveBaseAction.m` - Script to test the ROS `move_base` action server to reach a goal location
 * `testPathPlanning.m` - Script to test path planning given a map, start location, and goal location
 * `navigationTask.m` - Script to perform path planning and following on the robot
 
@@ -50,7 +52,14 @@ Computer vision (RGB image, Depth image, point cloud)
 * `trackObjectDepth.m` - Function that determines robot speed based on object location and depth
 * `visionTaskSize.m` - Main script that tracks a detected object using its location and pixel size
 * `trackObjectSize.m` - Function that determines robot speed based on object location and size
-* `processPointCloud.m` - Bonus example showing point cloud processing
+
+#### Bonus/Advanced Vision Files
+* `processPointCloud.m` - Example showing point cloud processing
+* `apriltags\visionAprilTags.m` - Script that subscribes to AprilTag detection ROS topic and displays information
+* `apriltags\README_APRILTAGS.md` - More information about the example above, including setup steps
+* `person_detection\visionPersonDetection.m` - Script to test pretrained face and person detectors from Computer Vision System Toolbox
+* `person_detection\visionGenderDetection.m` - Script that combines pretrained face detector with deep learning based gender classifier
+* `person_detection\README_GENDER.md` - More information about the example above, including setup steps
 
 ### Manipulation
 Inverse kinematics and robot arm control (using ROS interface to Dynamixel motors)

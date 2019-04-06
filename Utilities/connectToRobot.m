@@ -13,14 +13,16 @@ matlabIP = '';
 % Connect to ROS master
 rosinit(robotIP,'NodeHost',matlabIP)
 
-%% Set up ROS device for code generation and deployed node access
+%% Set up ROS device object for code generation, deployed node access, 
+%  and shell access for system commands
+%  NOTE: You only need to do this if your MATLAB and ROS machines are
+%  different and connected over the network.
+
 %r = rosdevice(robotIP,'turtlebot','turtlebot');
 %r.ROSFolder = '/opt/ros/kinetic';
 %r.CatkinWorkspace = '~/ros/catkin_ws';
 
 %% ROS Topics and frames
-
-% default
 ROBOT_CMD_VEL = '/cmd_vel'; 
 ROBOT_ODOM = '/odom';
 ROBOT_RESET_ODOM = '/reset_odometry';
@@ -35,27 +37,27 @@ JOINT_STATES = '/joint_states';
 %
 % !!! Set your platform here !!!
 %
-robottype = 'Turtlebot';
+robottype = 'TurtleBot';
 
 % Platform specific names
 
-% Turtlebot
-if (strcmp(robottype,'Turtlebot'))
-    ROBOT_CMD_VEL = '/mobile_base/commands/velocity'; 
-    ROBOT_ODOM = '/odom';
-    ROBOT_RESET_ODOM = '/mobile_base/commands/reset_odometry';
-    LASER_SCAN = '/scan';
-    RGB_IMAGE = '/camera/rgb/image_raw'; 
-    DEPTH_IMAGE = '/camera/depth_registered/image_raw'; 
-    DEPTH_POINTS = '/camera/depth_registered/points';
+% TurtleBot
+switch lower(robottype) %  Use lowercase so it's case insensitive
+    case 'turtlebot'
+        ROBOT_CMD_VEL = '/mobile_base/commands/velocity'; 
+        ROBOT_ODOM = '/odom';
+        ROBOT_RESET_ODOM = '/mobile_base/commands/reset_odometry';
+        LASER_SCAN = '/scan';
+        RGB_IMAGE = '/camera/rgb/image_raw'; 
+        DEPTH_IMAGE = '/camera/depth_registered/image_raw'; 
+        DEPTH_POINTS = '/camera/depth_registered/points';
 
 % MARRtino
-elseif (strcmp(robottype,'MARRtino'))
-    RGB_IMAGE = '/rgb/image_raw'; 
-    DEPTH_IMAGE = '/depth/image_raw'; 
+    case 'marrtino'
+        RGB_IMAGE = '/rgb/image_raw'; 
+        DEPTH_IMAGE = '/depth/image_raw'; 
 
 % Stage simulator
-elseif (strcmp(robottype,'Stage'))
+    case 'stage'
 
 end
-
