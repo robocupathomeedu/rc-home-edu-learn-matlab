@@ -32,7 +32,10 @@ RGB_IMAGE = '/camera/rgb/image_raw';
 DEPTH_IMAGE = '/camera/depth/image_raw'; 
 DEPTH_POINTS = '/camera/depth_registered/points';
 MAP_TOPIC = '/map';
+MAP_FRAME = '/map';
 JOINT_STATES = '/joint_states';
+MOVE_BASE_ACTION = '/move_base';
+
 
 %
 % !!! Set your platform here !!!
