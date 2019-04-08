@@ -40,7 +40,6 @@ Mapping, path planning, and path following
 * `testPathPlanning.m` - Script to test path planning given a map, start location, and goal location
 * `navigationTask.m` - Script to perform path planning and following on the robot
 
-
 ### Vision
 Computer vision (RGB image, Depth image, point cloud)
 * `processImage.m` - Simple script that reads RGB image and detects object
@@ -69,6 +68,12 @@ Inverse kinematics and robot arm control (using ROS interface to Dynamixel motor
 * `manipulationTask.m` - Script for manipulation using a real robot, with the Dynamixel ROS interface
 * `createTrajectory.m` - Function that generates a trajectory from waypoints
 * `plotTrajectory.m` - Function that plots a trajectory and waypoints
+
+### Logic
+IN PROGRESS: Examples using Stateflow for building state machines to model robot behavior. 
+This functionality requires MATLAB R2019a or later.
+* `simpleBehavior.sfx` - Chart that represents simple finite-state machine
+* `testSimpleBehavior.m` - Script to execute the chart above and test its behavior
 
 ### Integration
 Putting it all together into one typical RoboCup@Home task!
