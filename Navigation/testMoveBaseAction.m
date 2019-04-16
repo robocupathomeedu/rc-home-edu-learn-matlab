@@ -6,6 +6,7 @@
 connectToRobot
 % Define ROS Action Client to move_base
 [moveBaseClient,moveBaseMsg] = rosactionclient(MOVE_BASE_ACTION);
+moveBaseClient.FeedbackFcn = ''; % Removes display on command window
 
 %% EXECUTION
 % Define target pose [X Y theta_RAD] 
@@ -22,5 +23,9 @@ moveBaseMsg.TargetPose.Pose.Orientation.X = q(2);
 moveBaseMsg.TargetPose.Pose.Orientation.Y = q(3);
 moveBaseMsg.TargetPose.Pose.Orientation.Z = q(4);
 
-% Send the command
-result = sendGoalAndWait(moveBaseClient,moveBaseMsg);
+%% Send the command
+% Nonblocking call
+sendGoal(moveBaseClient,moveBaseMsg); 
+
+% Blocking call
+% result = sendGoalAndWait(moveBaseClient,moveBaseMsg);
