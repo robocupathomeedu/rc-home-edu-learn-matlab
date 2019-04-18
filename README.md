@@ -57,6 +57,7 @@ Computer vision (RGB image, Depth image, point cloud)
 * `apriltags\visionAprilTags.m` - Script that subscribes to AprilTag detection ROS topic and displays information
 * `apriltags\README_APRILTAGS.md` - More information about the example above, including setup steps
 * `person_detection\visionPersonDetection.m` - Script to test pretrained face and person detectors from Computer Vision System Toolbox
+* `person_detection\visionAgeDetection.m` - Script that combines pretrained face detector with deep learning based age classifier
 * `person_detection\visionGenderDetection.m` - Script that combines pretrained face detector with deep learning based gender classifier
 * `person_detection\README_GENDER.md` - More information about the example above, including setup steps
 
