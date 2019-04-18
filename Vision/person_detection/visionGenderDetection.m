@@ -1,9 +1,9 @@
 %% Face and Gender Recognition Example
 %
-% Copyright 2018 The MathWorks, Inc.
+% Copyright 2018-2019 The MathWorks, Inc.
 
 %% Setup
-mode = 'ros'; % 'ros' or 'webcam'
+mode = 'webcam'; % 'ros' or 'webcam'
 switch mode
     case 'ros'
         % ROS image acquisition
@@ -22,7 +22,8 @@ detector = vision.CascadeObjectDetector();
 
 % Load pretrained neural network for gender detection
 % load genderNet_6_13_2018
-load genderNet_6_14_2018
+% load genderNet_6_14_2018$
+load genderNet_imported
 classNames = genderNet.Layers(end).ClassNames;
 
 % Create video player for visualization

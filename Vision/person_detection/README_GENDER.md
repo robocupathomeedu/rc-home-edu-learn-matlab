@@ -5,7 +5,19 @@ Age and Gender Classification using Convolutional Neural Networks
 Gil Levi and Tal Hassner, The Open University of Israel
 https://www.openu.ac.il/home/hassner/projects/cnn_agegender/
 
-### Setup steps:
+### TO IMPORT THE NETWORK:
+
+1.  Download the Caffe prototxt and model files from one of the following 
+    links and make sure the `deploy_gender.prototxt` and `gender_net.caffemodel`
+    files are on the MATLAB search path.
+    * https://github.com/GilLevi/AgeGenderDeepLearning
+    * https://gist.github.com/GilLevi/c9e99062283c719c03de
+
+2.  Run the `importGenderNet` live script
+    (or alternatively, load the `genderNet_imported.mat` file)
+
+
+### TO TRAIN YOUR OWN NETWORK:
 
 1.  Download the image data from 
     https://www.openu.ac.il/home/hassner/Adience/data.html#agegender
@@ -22,7 +34,7 @@ https://www.openu.ac.il/home/hassner/projects/cnn_agegender/
     * https://github.com/GilLevi/AgeGenderDeepLearning
     * https://gist.github.com/GilLevi/c9e99062283c719c03de
 
-5.  Install the Neural Network Toolbox Importer for Caffe Models 
+5.  Install the Deep Learning Toolbox Importer for Caffe Models 
     from the Add-On Manager (Home > Add-Ons > Get Add-Ons)
 
 6.  Run the `trainGenderNet.m` script
