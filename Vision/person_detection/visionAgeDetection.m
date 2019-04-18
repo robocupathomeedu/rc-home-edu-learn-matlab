@@ -3,7 +3,7 @@
 % Copyright 2019 The MathWorks, Inc.
 
 %% Setup
-mode = 'webcam'; % 'ros' or 'webcam'
+mode = 'ros'; % 'ros' or 'webcam'
 switch mode
     case 'ros'
         % ROS image acquisition
@@ -41,7 +41,7 @@ while(1)
     % Run the face detector
     bboxes = step(detector, img);
     
-    % Predict gender for each of the bounding boxes
+    % Predict age for each of the bounding boxes
     numFaces = size(bboxes,1);
     scores = zeros(numFaces,1);
     ageText = {''};
