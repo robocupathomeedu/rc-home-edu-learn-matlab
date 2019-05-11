@@ -3,7 +3,7 @@
 % Copyright 2019 The MathWorks, Inc.
 
 %% Setup
-mode = 'webcam'; % 'ros' or 'webcam'
+mode = 'ros'; % 'ros' or 'webcam'
 switch mode
     case 'ros'
         % ROS image acquisition
@@ -18,17 +18,9 @@ switch mode
         end
 end
 
-% Load the pretrained MobileNet model
-load mobilenet
-
-% Filter classes by desired classes
-categories =  {'banana', 'slug', 'orange', 'ping-pong_ball', ... 
-    'pineapple','cup', 'coffee_mug', 'coffeepot','water_bottle', .... 
-    'wine_bottle','plastic_bag','volleyball', 'soccer_ball','rugby_ball',...
-    'basketball','football_helmet','teddy', 'toy_poodle'};
-classNames = mobilenet.Layers(end).Classes;
-classIndices = contains(string(classNames),categories);
-classNames = classNames(classIndices);
+% Load the pretrained MobileNet model. 
+% To modify classes, edit the following function.
+loadMobileNet;
 
 % Create video player for visualization
 vidPlayer = vision.DeployableVideoPlayer;

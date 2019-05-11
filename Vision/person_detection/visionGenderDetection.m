@@ -14,6 +14,7 @@ switch mode
         % WEBCAM image acquisition
         if ~exist('cam','var')
             cam = webcam;
+            cam.Resolution = '320x240'; % Comment out or change resolution
         end
 end
 
