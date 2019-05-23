@@ -56,6 +56,10 @@ Computer vision (RGB image, Depth image, point cloud)
 * `processPointCloud.m` - Example showing point cloud processing
 * `apriltags\visionAprilTags.m` - Script that subscribes to AprilTag detection ROS topic and displays information
 * `apriltags\README_APRILTAGS.md` - More information about the example above, including setup steps
+* `mobilenet\importMobileNet.m` - Imports pretrained MobileNet object detector from Keras model and makes modifications as needed to get the model working in MATLAB
+* `mobilenet\loadMobileNet.m` - Loads pretrained MobileNet object detector and filters down the number of classes to look for vs. the full ImageNet set
+* `mobilenet\testMobileNet.m` - Script to test pretrained MobileNet object detector on a static image
+* `mobilenet\visionMobileNet.m` - Script to run pretrained MobileNet object detector on webcam or ROS image feed
 * `person_detection\visionPersonDetection.m` - Script to test pretrained face and person detectors from Computer Vision System Toolbox
 * `person_detection\visionAgeDetection.m` - Script that combines pretrained face detector with deep learning based age classifier
 * `person_detection\visionGenderDetection.m` - Script that combines pretrained face detector with deep learning based gender classifier
