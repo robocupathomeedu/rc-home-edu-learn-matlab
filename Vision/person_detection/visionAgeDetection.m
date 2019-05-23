@@ -3,7 +3,7 @@
 % Copyright 2019 The MathWorks, Inc.
 
 %% Setup
-mode = 'ros'; % 'ros' or 'webcam'
+mode = 'webcam'; % 'ros' or 'webcam'
 switch mode
     case 'ros'
         % ROS image acquisition

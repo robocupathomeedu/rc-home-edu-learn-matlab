@@ -7,14 +7,14 @@ function success = showMap(varargin)
     %% Create map subscriber
     persistent mapSub
     if isempty(mapSub)
-        mapSub = rossubscriber(MAP_TOPIC);
+        mapSub = rossubscriber('/map');
     end
 
-    %% Receive, show, and save the latest map from the /map topic
+    %% Receive, show, and save the latest map from the map topic
     % Assumes you are using a gmapping tutorial like this one:
     % http://wiki.ros.org/turtlebot_navigation/Tutorials/indigo/Build%20a%20map%20with%20SLAM
     success = 0;
-    mapMsg = mapSub.LatestMessage;
+    mapMsg = receive(mapSub);
     if ~isempty(mapMsg)
         map = readOccupancyGrid(mapMsg);
         if nargin > 0
