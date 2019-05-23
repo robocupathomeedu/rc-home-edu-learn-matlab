@@ -30,6 +30,8 @@ systemMsg = ['source ' r.ROSFolder '/setup.bash; ' ...
              'rosrun sound_play say.py "' outputMsg '"'];         
 
 % Use ros device object's system method, if MATLAB is on separate machine from ROS master
+% If so, you will have to enter a command like the following
+%   r = rosdevice(robotIP,'username','password')
 system(r,systemMsg); 
 
 % Use built-in system function, if MATLAB is on the same machine as ROS master
