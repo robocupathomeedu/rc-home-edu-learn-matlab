@@ -1,9 +1,12 @@
 % Setup function for age detection network
+% NOTE: Please run this from the folder containing this function, 
+% since the path to the models folder is relative.
+
 % Copyright 2019 The MathWorks, Inc.
 function setupAgeDetector()
 
 % Define folder/model names and options
-modelFolder = fullfile(fileparts(mfilename('fullpath')),'models');
+modelFolder = 'models';
 modelAge = 'ageNetwork';
 ageGenderMeanImage = 'age_gender_mean';
 insertIntoProtoFile = @(modelFolder,filename,DataType) cat(2, ...
