@@ -6,7 +6,7 @@
 % Refer to the setup instructions in this folder for details on what to
 % bringup on the TurtleBot.
 
-%% Setup: Create all the needed connections to the robot
+%% Setup: Create all needed connections to the robot and vision utilities
 connectToRobot
 
 % ROS publishers, subscribers, and service servers
@@ -26,9 +26,9 @@ classNames = ageNet.Layers(end).ClassNames;
 detector = vision.CascadeObjectDetector;
 vidPlayer = vision.DeployableVideoPlayer;
 
-% ROS device (requires OpenSSH-server on machine)
+% Create ROS device object (requires OpenSSH-server on machine)
 r = rosdevice(robotIP,'mustar','ubuntu'); % Replace with your own user/pass
-r.ROSFolder = '/opt/ros/kinetic';
+r.ROSFolder = '/opt/ros/kinetic'; % Replace with your own ROS install folder
 outputMsg = 'What do you want me to do';
 speakCommand(r,outputMsg);
 

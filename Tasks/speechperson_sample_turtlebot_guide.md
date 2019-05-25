@@ -4,6 +4,8 @@ You will need the age detection network to run this sample task.
 
 In the Vision/person_recognition folder, run the setupAgeDetector function to download and set up the network.
 
+On the TurtleBot, you will need to install openssh-server package to run speech with the current implementation.
+
 ##BRINGUP ON TURTLEBOT
 
 Start the TurtleBot minimal node
