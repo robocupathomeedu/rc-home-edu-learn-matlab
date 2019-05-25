@@ -30,9 +30,7 @@ vidPlayer = vision.DeployableVideoPlayer;
 r = rosdevice(robotIP,'mustar','ubuntu'); % Replace with your own user/pass
 r.ROSFolder = '/opt/ros/kinetic';
 outputMsg = 'What do you want me to do';
-systemMsg = ['source ' r.ROSFolder '/setup.bash; ' ...
-    'rosrun sound_play say.py "' outputMsg '"'];
-system(r,systemMsg);
+speakCommand(r,outputMsg);
 
 disp('Setup complete.')
 
@@ -44,7 +42,7 @@ while(1)
     speechStr = speechMsg.Data;
     disp(['Received speech: ' speechStr])
     follow = contains(speechStr,'FOLLOW');
-    photo = contains(speechStr,'PHOTO');
+    photo = contains(speechStr,'PHOTO') || contains(speechStr,'PICTURE');
     stop = contains(speechStr,'STOP');
     age = contains(speechStr,'AGE');
     
