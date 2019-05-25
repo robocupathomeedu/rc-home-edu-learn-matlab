@@ -1,9 +1,12 @@
+function setupAgeDetector()
 % Setup function for age detection network
-% NOTE: Please run this from the folder containing this function, 
+
+% NOTE 1: Please run this from the folder containing this function, 
 % since the path to the models folder is relative.
+% NOTE 2: You will need to install the Deep Learning Toolbox Importer 
+% for Caffe Networks Add-On to successfully run this script
 
 % Copyright 2019 The MathWorks, Inc.
-function setupAgeDetector()
 
 % Define folder/model names and options
 modelFolder = 'models';
@@ -18,6 +21,11 @@ insertIntoProtoFile = @(modelFolder,filename,DataType) cat(2, ...
     '  }', newline, '  include: { ', newline, '    phase: TEST', newline, ...
     '    stage: "test-on-test"', newline, ' }', newline, '}', newline);
 options = weboptions('ContentType','text');
+
+% Create a model folder if it doesn't exist
+if ~exist(modelFolder,'dir')
+    mkdir(modelFolder)
+end
 
 % Download Mean Image for age and gender classification
 if ~isfile(fullfile(modelFolder,[ageGenderMeanImage,'.binaryproto']))
