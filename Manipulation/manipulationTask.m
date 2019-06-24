@@ -1,61 +1,45 @@
 % Example Manipulation task using ROS interface to Dynamixel motors
 
-% Copyright 2018 The MathWorks, Inc.
+% Copyright 2018-2019 The MathWorks, Inc.
 
 %% Setup
+% First, you must start the manipulation node
+% roslaunch rchomeedu_arm arm.launch
 connectToRobot;
 % Create publishers and subscribers
-jointSub = rossubscriber(JOINT_STATES);
-jointNames = {'arm_shoulder_pan_joint', ...
-              'arm_shoulder_lift_joint', ...
-              'arm_elbow_flex_joint', ... 
-              'arm_wrist_flex_joint', ...
-              'gripper_joint'};
+jointNames = {'waist','shoulder','elbow','wrist','hand'};
 numJoints = numel(jointNames);
 for idx = 1:numJoints
-    topicName = ['/' jointNames{idx} '/command'];
-    [jPub(idx),jMsg(idx)] = rospublisher(topicName);
+    jSub(idx) = rossubscriber(['/' jointNames{idx} '_controller/state']);
+    [jPub(idx),jMsg(idx)] = rospublisher(['/' jointNames{idx} '_controller/command']);
 end
 % Load robot description
 load manipDescriptions
-robot = tbArm; % TurtleBot Arm
-% robot = pincher; % PhantomX Pincher
-
+robot = tbArm;
 robot.DataFormat = 'column'; % Change data format to make ROS interface easier
 
-%% Get joint positions and do forward kinematics
+%% Get initial joint position and do forward kinematics
 close all
 jPos = zeros(6,1); % Needs to account for extra "fake" gripper joint
-received = false;
-while ~received
-    jPosMsg = receive(jointSub);
-    if numel(jPosMsg.Position) == numJoints
-        received = true;
-    end
-end
 for idx = 1:numJoints
-    for jIdx = 1:numJoints
-        if strcmp(jPosMsg.Name(idx),jointNames{jIdx})
-            jPos(jIdx) = jPosMsg.Position(idx);
-            continue;
-        end
-    end
+    jPos(idx) = jSub(idx).LatestMessage.CurrentPos;
 end
 tform = getTransform(robot,jPos,'gripper_link');
-eePos = tform2trvec(tform)
+eePos = tform2trvec(tform);
+fprintf('Starting gripper position is [%.2f %.2f %.2f]\n',eePos(1),eePos(2),eePos(3));
 
 %% Compute a trajectory
 close all
 startPoint = eePos;
 waypoints = [startPoint; ...
              0.0 0.0 0.3; ...
-             0.1 0.1 0.15; ...
-             -0.1 0.1 0.2; ...
-             -0.1 -0.1 0.15; ...
+             -0.1 0.0 0.15; ...
+             -0.1 -0.0 0.15; ...
+             0.0 -0.0 0.25; ...
              startPoint];
     
 % Create trajectory
-numSteps = 20; 
+numSteps = 50; 
 numPts = numSteps*(size(waypoints,1)-1) + 1;
 traj = createTrajectory(waypoints,numPts,'spline');
 
@@ -67,7 +51,7 @@ hold off
 %% Navigate a trajectory
 % Create IK solver
 ik = robotics.InverseKinematics('RigidBodyTree',robot);
-ik.SolverParameters.MaxIterations = 100;
+ik.SolverParameters.MaxIterations = 50;
 weights = [0 0 0 1 1 1];
 initGuess = jPos;
 
