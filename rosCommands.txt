@@ -1,5 +1,5 @@
 ROS COMMAND CHEAT SHEET
-Copyright 2018 The MathWorks, Inc.
+Copyright 2018-2019 The MathWorks, Inc.
 
 
 ##### STARTING TURTLEBOT
@@ -8,7 +8,7 @@ roslaunch turtlebot_bringup 3dsensor.launch
 
 
 ##### RUNNING SPEECH SYNTHESIS
-rosrun sound_play soundplay_node.py
+roslaunch sound_play soundplay_node.py
 rosrun sound_play say.py "Hello World"
 
 
@@ -31,7 +31,7 @@ roslaunch turtlebot_teleop xbox360_teleop.launch (left bumper + joystick)
 http://wiki.ros.org/joy/Tutorials/ConfiguringALinuxJoystick
 
 INSTALL: 
-sudo apt-get install ros-indigo-joy (or other distribution)
+sudo apt-get install ros-kinetic-joy (or other distribution)
 
 TEST DEVICE:
 ls /dev/input/

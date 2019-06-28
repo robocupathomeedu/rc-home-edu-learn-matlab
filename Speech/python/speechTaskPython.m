@@ -1,13 +1,15 @@
-% Speech recognition example task
+% Speech recognition example task (using Python PocketSphinx)
 % Copyright 2018-2019 The MathWorks, Inc.
 
 % NOTE: This requires the soundplay_node to be running on your machine.
-%       roslaunch sound_play soundplay_node.py
+%       rosrun sound_play soundplay_node.py
 
 %% Setup
 connectToRobot;
-% Subscribe to speech recognition node
-speechSub = rossubscriber('/lm_data');
+% Add current folder to python path
+if count(py.sys.path,'') == 0
+    insert(py.sys.path,int32(0),'');
+end
 % Create speech action server and configure the goal
 [speechClient,speechGoal] = rosactionclient('/sound_play');
 speechClient.FeedbackFcn = '';
@@ -19,8 +21,8 @@ speechGoal.SoundRequest.Arg2 = 'voice_kal_diphone';
 %% Call speech recognizer, convert output to MATLAB string
 clc
 disp('Hearing audio clip...')
-speechMsg = receive(speechSub);
-speechStr = speechMsg.Data;
+pyOut = py.mySpeechDetector.listenToText();
+speechStr = string(pyOut);
 disp('Listening done')
 disp('Raw message:')
 disp(speechStr)

@@ -1,8 +1,7 @@
-function [goalPoint,objType,outputMsg] = parseCommand(speechStr)
-% PARSECOMMAND Simple parser that searches for object types and locations 
+function [goalPoint,objType,outputMsg] = parseSpeechCommand(speechStr)
+% Simple parser that searches for object types and locations 
 % in a string. Fill this out with different commands and locations
-
-% Copyright 2018 The MathWorks, Inc.
+% Copyright 2018-2019 The MathWorks, Inc.
 
 % Convert everything to lower case just in case (pun intended)
 speechStr = lower(speechStr);
