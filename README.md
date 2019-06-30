@@ -12,6 +12,7 @@ Finally, open the ROS Configuration app by typing `rosConfigurationApp`.
 Modify this with your robot's IP address and topic names as needed. 
 
 ## Folder and File Information
+Refer to the folder-specific README files for more detailed information on each folder.
 
 ### IntroROS
 Introduction to communicating with a ROS enabled robot.
@@ -21,11 +22,7 @@ Introduction to communicating with a ROS enabled robot.
 * `displayImageData.m` - How to get and display color and depth images from the RGB-D sensor
 
 ### Speech
-Uses Python interface to call speech recognition, and calls out to external ROS nodes for speech synthesis 
-* `mySpeechDetector.py` - Simple Python file that uses the SpeechRecognition package
-* `testSpeechRec.m` - Simple script that wraps around the Python code and returns speech detection results
-* `speechTask.m` - Script that takes a voice command, parses it, and outputs speech
-* `parseCommand.m` - Function that parses the received text from speech recognition
+All files pertaining to speech detection and synthesis.
 
 ### Navigation
 Mapping, path planning, and path following
