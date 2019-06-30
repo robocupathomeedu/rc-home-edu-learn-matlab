@@ -48,7 +48,6 @@ rosrun joy joy_node
 cd marrtino_apps/robot
 roslaunch robot.launch
 
-
 ##### STARTING STAGE SIMULATION (MARRTINO APPS)
 cd marrtino_apps/stage
 roslaunch simrobot.launch

@@ -1,5 +1,5 @@
 # RoboCup@Home Education
-### Speech Files
+## Speech Files
 
 ### Main folder
 * `testSpeechAction.m` - Simple script that receives detected speech from PocketSphinx node and uses ROS actions to synthesize speech (recommended approach)
