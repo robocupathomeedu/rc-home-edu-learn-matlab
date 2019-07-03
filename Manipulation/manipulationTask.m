@@ -38,13 +38,13 @@ waypoints = [startPoint;
           startPoint];
     
 % Create trajectory
-numSteps = 50; 
+numSteps = 100; 
 numPts = numSteps*(size(waypoints,1)-1) + 1;
 traj = trapveltraj(waypoints',numSteps,'EndTime',5);
 
 % Plot the solution
 show(robot,jPos,'Frames','off');
-plotTrajectory(waypoints,traj',false);
+plotTrajectory(waypoints,traj,false);
 hold off
 
 %% Navigate a trajectory
