@@ -11,7 +11,6 @@
 
 %% Setup: Connect to ROS master and create a publisher
 connectToRobot;
-ros.speechSub = rossubscriber('/lm_data');
 [speechClient,speechGoal] = rosactionclient('/sound_play');
 speechClient.FeedbackFcn = '';
 

@@ -31,21 +31,20 @@ fprintf('Starting gripper position is [%.2f %.2f %.2f]\n',eePos(1),eePos(2),eePo
 %% Compute a trajectory
 close all
 startPoint = eePos;
-waypoints = [startPoint; ...
-             0.0 0.0 0.3; ...
-             -0.1 0.0 0.15; ...
-             -0.1 -0.0 0.15; ...
-             0.0 -0.0 0.25; ...
-             startPoint];
+% NOTE: These waypoints assume you start the arm straight upwards
+waypoints = [startPoint; 
+          0.1 0 0.3; 
+          0.1 0.1 0.3 ;
+          startPoint];
     
 % Create trajectory
 numSteps = 50; 
 numPts = numSteps*(size(waypoints,1)-1) + 1;
-traj = createTrajectory(waypoints,numPts,'spline');
+traj = trapveltraj(waypoints',numSteps,'EndTime',5);
 
 % Plot the solution
 show(robot,jPos,'Frames','off');
-plotTrajectory(waypoints,traj,false);
+plotTrajectory(waypoints,traj',false);
 hold off
 
 %% Navigate a trajectory
@@ -57,8 +56,8 @@ initGuess = jPos;
 
 % Loop through trajectory and solve IK
 disp('Starting trajectory...')
-for idx = 1:numPts
-    targetPos = traj(idx,:);
+for idx = 1:size(traj,2)
+    targetPos = traj(:,idx)';
     targetTform = trvec2tform(targetPos);
     ikSoln = ik('gripper_link',targetTform,weights,initGuess);
     initGuess = ikSoln;

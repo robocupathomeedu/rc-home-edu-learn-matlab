@@ -1,6 +1,6 @@
 % Manipulation algorithm test script
 
-% Copyright 2018 The MathWorks, Inc.
+% Copyright 2018-2019 The MathWorks, Inc.
 
 %% Load the robot description
 load manipDescriptions
@@ -30,20 +30,19 @@ plot3(targetPos(1),targetPos(2),targetPos(3),...
 hold off
 initGuess = robot.homeConfiguration;
 startPoint = tform2trvec(getTransform(robot,initGuess,'gripper_link'));
-waypoints = [startPoint; ...
-             0.3 0.0 0.0; ...
-             0.2 0.2 -0.05; ...
-             0.0 0.3 0.15; ...
-             0.1 0.1 0.2];
+waypoints = [startPoint; 
+          0.1 0 0.3; 
+          0.1 0.1 0.3 ;
+          startPoint];
     
 % Create trajectory
-numSteps = 5; 
+numSteps = 25; 
 numPts = numSteps*(size(waypoints,1)-1) + 1;
-traj = createTrajectory(waypoints,numPts,'spline');
+traj = trapveltraj(waypoints',numSteps,'EndTime',5);
 
 % Loop through trajectory and solve IK
-for idx = 1:numPts
-    targetPos = traj(idx,:);
+for idx = 1:size(traj,2)
+    targetPos = traj(:,idx)';
     targetTform = trvec2tform(targetPos);
     ikSoln = ik('gripper_link',targetTform,weights,initGuess);
     initGuess = ikSoln;

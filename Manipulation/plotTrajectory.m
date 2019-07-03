@@ -6,11 +6,11 @@ function plotTrajectory(waypoints,traj,varargin)
 %   legend      : (Optional) true/false argument for legend display
 %                  Default value is true
 
-% Copyright 2018 The MathWorks, Inc.
+% Copyright 2018-2019 The MathWorks, Inc.
 
 hold on
 % Plot trajectory
-plot3(traj(:,1),traj(:,2),traj(:,3), ...
+plot3(traj(1,:),traj(2,:),traj(3,:), ...
       'r.-','MarkerSize',5)
 % Plot middle waypoints
 plot3(waypoints(2:end-1,1),waypoints(2:end-1,2),waypoints(2:end-1,3), ...

@@ -21,7 +21,7 @@ end
 % NOTE: You can configure the detectors below with more options.
 % For a full list of detectors, refer to 
 % >> web(fullfile(docroot, 'vision/object-detectors.html'))
-detectorType = 'personACF';  % 'face', 'personHOG', or 'personACF'
+detectorType = 'face';  % 'face', 'personHOG', or 'personACF'
 switch detectorType
     case 'face'
         detector = vision.CascadeObjectDetector;
