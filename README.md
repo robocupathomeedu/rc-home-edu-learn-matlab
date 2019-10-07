@@ -3,6 +3,9 @@
 ### Copyright 2018-2019 The MathWorks, Inc.
 
 ## Getting Started
+
+[![Alt text](https://drive.google.com/file/d/1dyGDBKpOgAKiXhjwqLZHkJVWWRxuyWd6/view?usp=sharing)](https://drive.google.com/file/d/1dyGDBKpOgAKiXhjwqLZHkJVWWRxuyWd6/view?usp=sharing)
+
 First, run the `startWorkshop` script to set up your environment.
 
 Take a look at `rosCommands.txt` for some of the ROS nodes that need to be 
