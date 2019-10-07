@@ -6,6 +6,7 @@
 load manipDescriptions
 robot = tbArm; % TurtleBot Arm
 % robot = pincher; % PhantomX Pincher
+robot.DataFormat = 'row';
 
 %% Inverse kinematics
 % The end effector is at gripper_link (body index 24)

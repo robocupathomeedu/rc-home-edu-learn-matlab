@@ -6,7 +6,7 @@
 % NOTE: Requires ROS master on TurtleBot to run the following follower node
 %       roslaunch rchomeedu_follower follower2.launch
 connectToRobot;
-[followSvc,followMsg] = rosserviceclient('/turtlebot_follower/change_state');
+[followSvc,followMsg] = rossvcclient('/turtlebot_follower/change_state');
 
 %% Enable the follower
 followMsg.State = followMsg.FOLLOW; 

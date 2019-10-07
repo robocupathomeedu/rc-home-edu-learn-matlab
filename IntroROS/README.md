@@ -8,5 +8,4 @@ Start here to learn how to use MATLAB, Simulink, and ROS to interface with your 
 * `introRobotControl.m` - How to get robot pose and send velocity commands
 * `displayScanData.m` - How to get and display data from the "lidar" sensor
 * `displayImageData.m` - How to get and display color and depth images from the RGB-D sensor
-
-TODO: Add Simulink models
+* `testTurtleBotModel.slx` - Simulink model showing how to interact with TurtleBot2
