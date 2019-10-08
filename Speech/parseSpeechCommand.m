@@ -7,12 +7,12 @@ function [goalPoint,objType,outputMsg] = parseSpeechCommand(speechStr)
 speechStr = lower(speechStr);
 
 % Find the object type
-if contains(speechStr,'blue')
-    objType = 'blue';
-elseif contains(speechStr,'red')
-    objType = 'red';
-elseif contains(speechStr,'green')
-    objType = 'green';
+if contains(speechStr,'water')
+    objType = 'water';
+elseif contains(speechStr,'milk')
+    objType = 'milk';
+elseif contains(speechStr,'glass')
+    objType = 'glass';
 else
     objType = '';
 end
@@ -41,7 +41,7 @@ if isempty(goalName)
     outputMsg = [outputMsg 'I did not hear a valid goal location. '];
 end
 if ~isempty(objType) && ~isempty(goalName)
-    outputMsg = ['Finding the ' objType ' object in the ' goalName '.'];
+    outputMsg = ['Finding the ' objType ' in the ' goalName '.'];
 end
 
 end
