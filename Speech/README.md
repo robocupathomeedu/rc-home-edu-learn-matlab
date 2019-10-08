@@ -6,6 +6,8 @@
 * `testSpeechTopic.m` - Simple script that receives detected speech from PocketSphinx node and uses ROS topics to synthesize speech
 * `speechTask.m` - Script that takes a voice command, parses it, and outputs speech
 * `parseSpeechCommand.m` - Function that parses the received text from speech recognition
+* `speechChart.sfx` - Stateflow chart that shows more advanced speech logic
+* `runSpeechChart.m` - Script that runs the chart above until the "Stop" state is reached
 
 ### `python` folder
 Uses MATLAB interface to Python to directly call speech recognition using PocketSphinx, without ROS.

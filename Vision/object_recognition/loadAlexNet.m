@@ -1,4 +1,4 @@
-% Loads a pretrained MobileNet model and returns a filtered set of class
+% Loads a pretrained AlexNet model and returns a filtered set of class
 % names and class indices.
 %
 % Copyright 2019 The MathWorks, Inc.

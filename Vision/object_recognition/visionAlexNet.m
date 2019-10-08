@@ -1,4 +1,4 @@
-%% Image Classification Example with MobileNet  
+%% Image Classification Example with AlexNet  
 %
 % Copyright 2019 The MathWorks, Inc.
 

@@ -1,4 +1,4 @@
-%% Image Classification Test with MobileNet
+%% Image Classification Test with AlexNet
 %
 % Copyright 2019 The MathWorks, Inc.
 
