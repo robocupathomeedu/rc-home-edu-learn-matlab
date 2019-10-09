@@ -1,6 +1,6 @@
 % Introduction to image processing
 
-% Copyright 2018 The MathWorks, Inc.
+% Copyright 2018-2019 The MathWorks, Inc.
 
 %% Setup
 connectToRobot;
@@ -16,20 +16,27 @@ depthMsg = receive(depthSub);
 depthImg = readImage(depthMsg);
 figure, imshow(depthImg,[0 3000]); % Plot up to 3 meters
 
-%% Open the Color Thresholder App 
+%% Open the Color Thresholder App
 % Uncomment the line below, or open the app from the Apps tab
-% colorThresholder(img) 
+% colorThresholder(img)
 
 %% Object detection
 close all
 objType = 'blue';
-[objLocation,objDepth,objBox] = detectObject(img,objType);
+
+% Get the object location, size, bounding box, and depth
+[objLocation,objSize,objBox] = detectObject(img,objType);
+objDepth = getObjectDepth(depthImg,objLocation);
     
 % Visualize only if an object is found
-if ~isempty(objDepth) && (objDepth>0)
-   % Visualize
-   imgLabeled = insertShape(img,'Rectangle',objBox,'LineWidth',2);
-   imgLabeled = insertText(imgLabeled,[0 0],['Depth: ' num2str(objDepth) ' m'],'FontSize',16);    
+if ~isempty(objSize) && (objSize>0)
+    
+    % Annotate the image
+    imgLabeled = insertShape(img,'Rectangle',objBox,'LineWidth',2);
+    imgLabeled = insertText(imgLabeled,[0 0],['Size: ' num2str(objSize) ' pixels'],'FontSize',16);
+    imgLabeled = insertText(imgLabeled,[0 30],['Depth: ' num2str(objDepth) ' m'],'FontSize',16);
+    
+    % Display the annotated image
+    figure
+    imshow(imgLabeled)
 end
-figure
-imshow(imgLabeled)

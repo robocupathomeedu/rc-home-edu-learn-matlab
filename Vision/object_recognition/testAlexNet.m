@@ -16,14 +16,12 @@ img = imread('2019-May-23_10-54-10.jpg');
 imgResized = imresize(img,[227 227]);
 predictions = predict(net,imgResized);
 classPredictions = zeros(size(classNames));
-for ii = 1:numel(classNames) 
-   for jj = 1:numel(classIndices{ii})
-       classPredictions(ii) = sum(predictions(classIndices{ii}));
-   end
+for ii = 1:numel(classNames)
+    classPredictions(ii) = sum(predictions(classIndices{ii}));
 end
 classPredictions = classPredictions./sum(classPredictions);
 [maxP,maxIdx] = max(classPredictions);
-[maxSubP,maxSubIdx] = max(predictions(classIndices{ii}));
+[maxSubP,maxSubIdx] = max(predictions(classIndices{maxIdx}));
 
 % Display the image with its classification results
 predictionText = sprintf('%s : %.2f%%',classNames{maxIdx}{maxSubIdx},maxP*100);
