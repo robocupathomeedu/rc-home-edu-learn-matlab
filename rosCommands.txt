@@ -22,6 +22,15 @@ http://wiki.ros.org/turtlebot_navigation/Tutorials/Build%20a%20map%20with%20SLAM
 roslaunch turtlebot_navigation gmapping_demo.launch
 roslaunch turtlebot_rviz_launchers view_navigation.launch
 
+rosrun map_server map_saver -f myFileName
+
+
+##### RUNNING NAVIGATION ON TURTLEBOT
+export TURTLEBOT_MAP_FILE=/<path to maps folder>/map.yaml
+roslaunch turtlebot_navigation amcl_demo.launch
+roslaunch turtlebot_rviz_launchers view_navigation.launch
+roslaunch rchomeedu_navigation navigation.launch
+
 
 ##### TELEOPERATION
 http://wiki.ros.org/turtlebot_teleop

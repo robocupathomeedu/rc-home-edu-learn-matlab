@@ -1,7 +1,7 @@
 function map = readYamlMap(filename)
-% % Reads a YAML and corresponding PGM file as a robotics.OccupancyGrid
+% % Reads a YAML and corresponding PGM file as an occupancyMap
 %
-% Copyright 2018 The MathWorks, Inc.
+% Copyright 2018-2019 The MathWorks, Inc.
 
     %% Initialize outputs
     map = [];
@@ -49,7 +49,7 @@ function map = readYamlMap(filename)
     fclose(f);
 
     %% Create occupancy grid
-    map = robotics.OccupancyGrid(occMat,resolution);
+    map = occupancyMap(occMat,resolution);
     map.OccupiedThreshold = occupied_thresh;
     map.FreeThreshold = free_thresh;
     map.GridLocationInWorld = origin(1:2);

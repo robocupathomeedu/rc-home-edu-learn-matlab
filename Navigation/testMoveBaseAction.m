@@ -10,7 +10,7 @@ moveBaseClient.FeedbackFcn = ''; % Removes display on command window
 
 %% EXECUTION
 % Define target pose [X Y theta_RAD] 
-goalPose = [0 0 0];
+goalPose = [3.5 4 pi/2];
 
 % Package goal pose into ROS message
 moveBaseMsg.TargetPose.Header.FrameId = '/map';

@@ -1,6 +1,6 @@
 %% Path planning algorithm test script
 
-% Copyright 2018 The MathWorks, Inc.
+% Copyright 2018-2019 The MathWorks, Inc.
 
 %% Load and show the map
 load myMapsV3
@@ -10,14 +10,15 @@ hold on
 
 %% Interactively select points
 title('STEP 1: Click on map to select start point');
-startPoint = impoint;
-startPos = getPosition(startPoint);
+startPoint = drawpoint;
+startPos = startPoint.Position;
 title('STEP 2: Click on map to select goal point');
-goalPoint = impoint;
-goalPos = getPosition(goalPoint);
+goalPoint = drawpoint;
+goalPos = goalPoint.Position;
 
 %% Create a probabilistic roadmap (PRM)
-prm = robotics.PRM(map);
+inflate(map,0.2); % Optionally inflate the map to help avoid walls
+prm = mobileRobotPRM(map);
 prm.NumNodes = 300;
 prm.ConnectionDistance = 2.5;
 

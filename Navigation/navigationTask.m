@@ -1,6 +1,6 @@
 % Example navigation task
 
-% Copyright 2018 The MathWorks, Inc.
+% Copyright 2018-2019 The MathWorks, Inc.
 
 %% Setup
 connectToRobot;
@@ -12,26 +12,30 @@ resetOdometry;
    
 %% Path planning
 % First, load the presaved map
-load myMapsV3
+load myTestMap
+inflate(map,0.2); % Optionally inflate the map to help avoid walls
+show(map)
 
 % Then, create a probabilistic roadmap (PRM)
-prm = robotics.PRM(map);
+prm = mobileRobotPRM(map);
 prm.NumNodes = 300;
 prm.ConnectionDistance = 2.5;
 
-% Define a start and goal point
-pose = getRobotPose(receive(odomSub));
-startPoint = pose(1:2);
-goalPoint = [12 5]; % Specify goal as an array
-%goalPoint = getPosition(impoint); % Get goal interactively
+% Define a start and goal point interactively
+title('STEP 1: Click on map to select start point');
+startPoint = drawpoint;
+startPos = startPoint.Position;
+title('STEP 2: Click on map to select goal point');
+goalPoint = drawpoint;
+goalPos = goalPoint.Position;
 
 % Find a path
-myPath = findpath(prm,startPoint,goalPoint);
-show(prm)
+myPath = findpath(prm,startPos,goalPos);
+close all, show(prm)
 
 %% Perform navigation using Pure Pursuit
 % First, create the controller and set its parameters
-pp = robotics.PurePursuit;
+pp = controllerPurePursuit;
 pp.DesiredLinearVelocity = 0.2;
 pp.LookaheadDistance = 0.5;
 pp.Waypoints = myPath;
@@ -39,10 +43,12 @@ pp.Waypoints = myPath;
 % Navigate until the goal is reached within threshold
 show(prm); 
 hold on
+initPos = [startPos 0] - getRobotPose(odomSub.LatestMessage);
+pose = initPos;
 hPose = plot(pose(1),pose(2),'gx','MarkerSize',15,'LineWidth',2);
-while norm(goalPoint-pose(1:2)) > 0.1 
+while norm(goalPos-pose(1:2)) > 0.1 
     % Get latest pose
-    pose = getRobotPose(odomSub.LatestMessage);     
+    pose = initPos + getRobotPose(odomSub.LatestMessage);     
     % Run the controller
     [v,w] = pp(pose); 
     % Assign speeds to ROS message and send
