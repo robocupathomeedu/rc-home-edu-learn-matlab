@@ -2,6 +2,8 @@ ROS COMMAND CHEAT SHEET
 Copyright 2018-2019 The MathWorks, Inc.
 
 
+# TURTLEBOT
+
 ##### STARTING TURTLEBOT
 roslaunch turtlebot_bringup minimal.launch
 roslaunch turtlebot_bringup 3dsensor.launch
@@ -55,9 +57,13 @@ rosparam set joy_node/dev "/dev/input/jsX"
 rosrun joy joy_node
 
 
+##### MANIPULATION
+roslaunch rchomeedu_arm arm.launch
+
+
 # MARRTINO OPTIONS
 
-##### STARTING MARRTINO
+##### STARTING
 cd marrtino_apps/robot
 roslaunch robot.launch
 

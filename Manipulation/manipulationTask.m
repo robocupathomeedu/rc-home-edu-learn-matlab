@@ -39,8 +39,10 @@ waypoints = [startPoint;
     
 % Create trajectory
 numSteps = 100; 
+totalTime = 15;
 numPts = numSteps*(size(waypoints,1)-1) + 1;
-traj = trapveltraj(waypoints',numSteps,'EndTime',5);
+traj = trapveltraj(waypoints',numSteps, ...
+    'EndTime',totalTime/(size(waypoints,1)-1));
 
 % Plot the solution
 show(robot,jPos,'Frames','off');
@@ -68,7 +70,7 @@ for idx = 1:size(traj,2)
         send(jPub(jIdx),jMsg(jIdx));
     end
         
-    pause(0.1);
+    pause(totalTime/numSteps);
 
 end
 

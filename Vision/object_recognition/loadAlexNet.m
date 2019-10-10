@@ -3,7 +3,7 @@
 %
 % Copyright 2019 The MathWorks, Inc.
 
-% Load the pretrained MobileNet model
+% Load the pretrained AlexNet model
 net = alexnet;
 
 % Filter classes by desired categories [MODIFY AS NEEDED]

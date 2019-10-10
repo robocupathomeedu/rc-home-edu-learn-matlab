@@ -21,7 +21,7 @@ end
 detector = vision.CascadeObjectDetector();
 
 % Load pretrained neural network for age detection
-load ageNetwork
+load ageNet_imported
 classNames = ageNet.Layers(end).ClassNames;
 
 % Create video player for visualization
@@ -44,33 +44,17 @@ while(1)
     % Predict age for each of the bounding boxes
     numFaces = size(bboxes,1);
     scores = zeros(numFaces,1);
-    ageText = cell(numFaces,1);
+    ageText = {''};
     for idx = 1:numFaces
-        
-        % Create a buffer zone
-        bufSize = 0.3;
-        bbox = bboxes(idx,:);
-        bufx = floor(bufSize*bbox(3));
-        bufy = floor(bufSize*bbox(4));
-        xs = max(bbox(1)-bufx, 1);
-        ys = max(bbox(2)-bufy, 1);
-        xe = min(bbox(1)+bbox(3)-1+bufx, size(img,2));
-        ye = min(bbox(2)+bbox(4)-1+bufy, size(img,1));
-
-        % Cropping original image not to lose resolution
-        faceImg = img(floor(ys):floor(ye), ...
-                      floor(xs):floor(xe),:);
-        
-        % Predict age
-        predictImg = imresize(faceImg,[224 224]);
-        ageText{idx} = char( classify(ageNet,predictImg) );
+        predictImg = imresize(imcrop(img,bboxes(idx,:)),[227 227]);
+        score = predict(ageNet,predictImg);  % NOTE: Can also use 'classify' function if you do not want scores
+        [scores(idx),maxIdx] = max(score);
+        ageText{idx} = [classNames{maxIdx} ': ' num2str(scores(idx))];
     end
     
     % Draw the returned bounding box and text around the detected faces.
-    if numFaces > 0
-        img = insertShape(img,'Rectangle',bboxes);
-        img = insertText(img,bboxes(:,1:2),ageText);
-    end
+    img = insertShape(img,'Rectangle',bboxes);
+    img = insertText(img,bboxes(:,1:2),ageText);
     step(vidPlayer,img);
     
     pause(0.2);
