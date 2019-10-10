@@ -12,7 +12,7 @@ robot.DataFormat = 'row';
 % The end effector is at body "gripper_link"
 targetPos = [0.1 0.15 0.25];
 targetTform = trvec2tform(targetPos);
-ik = robotics.InverseKinematics('RigidBodyTree',robot);
+ik = inverseKinematics('RigidBodyTree',robot);
 weights = [0.0 0.0 0 1 1 1];
 initGuess = robot.homeConfiguration;
 [ikSoln,ikInfo] = ik('gripper_link',targetTform,weights,initGuess);
@@ -37,11 +37,12 @@ waypoints = [startPoint;
           startPoint];
     
 % Create trajectory
-numSteps = 25; 
+numSteps = 31; 
 numPts = numSteps*(size(waypoints,1)-1) + 1;
 traj = trapveltraj(waypoints',numSteps,'EndTime',5);
 
-% Loop through trajectory and solve IK
+%% Loop through trajectory and solve IK
+ikSolns = zeros(size(traj,2),numel(robot.homeConfiguration));
 for idx = 1:size(traj,2)
     targetPos = traj(:,idx)';
     targetTform = trvec2tform(targetPos);
@@ -49,8 +50,20 @@ for idx = 1:size(traj,2)
     initGuess = ikSoln;
 
     % Plot the solution
-    show(robot,ikSoln,'Frames','off');
+    show(robot,ikSoln,'Frames','off','PreservePlot',false);
     plotTrajectory(waypoints,traj,false);
-    hold off
     drawnow
+    
+    % Package the solution into the array
+    ikSolns(idx,:) = ikSoln;
+end
+
+%% Plot the IK solutions
+figure
+for idx = 1:4
+    subplot(2,2,idx)
+    plot(ikSolns(:,idx))
+    title(['IK Solution for Joint ' num2str(idx)])
+    ylabel('Angle [rad]')
+    xlabel('Step number')
 end

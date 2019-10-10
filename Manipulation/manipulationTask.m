@@ -51,7 +51,7 @@ hold off
 
 %% Navigate a trajectory
 % Create IK solver
-ik = robotics.InverseKinematics('RigidBodyTree',robot);
+ik = inverseKinematics('RigidBodyTree',robot);
 ik.SolverParameters.MaxIterations = 50;
 weights = [0 0 0 1 1 1];
 initGuess = jPos;
