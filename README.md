@@ -4,6 +4,8 @@
 
 ## Getting Started
 
+To follow along this material, we recommend watching the [video playlist on YouTube](https://www.youtube.com/playlist?list=PLtzy3yw-5oP9uwzfFnbYNmyPVzKIlBqi_).
+
 First, run the `startWorkshop` script to set up your environment.
 
 Take a look at `rosCommands.txt` for some of the ROS nodes that need to be 
