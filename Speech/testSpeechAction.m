@@ -14,6 +14,9 @@ connectToRobot;
 [speechClient,speechGoal] = rosactionclient('/sound_play');
 speechClient.FeedbackFcn = '';
 
+% IMPORTANT NOTE: If you get an error here trying to create the ROS action
+% client for the /sound_play action
+% Please follow the steps outlined in the "update_sound_play_ROS_msg.pdf" 
 %% Send action goal
 % The command given (play pre-defined sound, from a custom file or use text)
 speechGoal.SoundRequest.Sound = speechGoal.SoundRequest.SAY;
